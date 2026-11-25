@@ -7,6 +7,7 @@ on:
         description: 'Select Browser'
         required: true
         type: choice
+        default: chromium
         options:
           - chromium
           - firefox
@@ -16,6 +17,7 @@ on:
         description: 'Select Environment'
         required: true
         type: choice
+        default: QA
         options:
           - QA
           - Staging
@@ -49,4 +51,4 @@ jobs:
         run: mvn -PFramework exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps"
 
       - name: Run Playwright Tests
-        run: xvfb-run -a mvn -B -PFramework -DRegression -Dbrowser=${{ inputs.browser }} -Denv=${{ inputs.environment }} test
+        run: xvfb-run -a mvn -B -PFramework -Dbrowser=${{ inputs.browser || 'chrome' }} -Denv=${{ inputs.environment || 'qa' }} test
