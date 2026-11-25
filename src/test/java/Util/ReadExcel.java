@@ -1,9 +1,10 @@
+
 package Util;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,13 @@ public class ReadExcel
         List<HashMap<String,String>> map = new ArrayList<>();
 
 
-        FileInputStream fis = new FileInputStream("E:/Logincreds.xlsx");
+        InputStream fis = getClass().getClassLoader().getResourceAsStream("Logincreds.xlsx");
+
+        if (fis == null)
+        {
+            throw new IOException("Logincreds.xlsx not found in src/test/resources");
+        }
+
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet sheet = workbook.getSheetAt(0);
 
@@ -34,7 +41,7 @@ public class ReadExcel
                 data.put(key, value);
                 // email	password
                 // cmayank309@gmail.com	eventHub@123
-               //  garg.mayank400@gmail.com	eventHub@123
+                //  garg.mayank400@gmail.com	eventHub@123
             }
             map.add(data);
         }
