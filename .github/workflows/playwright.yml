@@ -1,0 +1,31 @@
+name: Playwright Java Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '22'
+          cache: maven
+
+      - name: Build & Install
+        run: mvn -B -PFramework install -DskipTests --no-transfer-progress
+
+      - name: Install Playwright Browsers
+        run: mvn -PFramework exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps"
+
+      - name: Run Playwright Tests
+        run: mvn -B -PFramework test
