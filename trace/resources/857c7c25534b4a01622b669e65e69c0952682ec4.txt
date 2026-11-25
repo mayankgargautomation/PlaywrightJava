@@ -1,0 +1,1 @@
+{"event_name":"gtag.config","smart_setup":{"is_auto_web_details":true},"event_id":"9e9be32d-f3fb-40b4-b600-8e00281a8060_1792497423735.3","fb.pixel_id":"1322674182967749","website_context":{"location":"https://rahulshettyacademy.com/loginpagePractise/","referrer":"","isInIFrame":false},"fb.fbp":"fb.1.1792497425286.836293471266377875"}

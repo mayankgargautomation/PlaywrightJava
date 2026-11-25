@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name = "TestSuite" parallel="classes" thread-count="3">
+    <test name = "Framework">
+        <classes>
+            <class name="tests.UIFrameworkRunner.FrameworkRunner" />
+            <class name="tests.UIFrameworkRunner.IMockingRequestRouteResume" />
+            <class name ="tests.UIFrameworkRunner.IMockingResponseRouteFulfill"/>
+        </classes>
+    </test>
+</suite>
